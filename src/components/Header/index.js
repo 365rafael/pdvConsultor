@@ -1,13 +1,15 @@
-import { View, Text } from "react-native";
+import { View, Text, SafeAreaView } from "react-native";
 import React from "react";
 
 import styles from "../../styles";
 
-const Header = () => {
+const Header = ({ title }) => {
   return (
-    <View style={styles.text}>
-      <Text style={styles.title}>Consultor PDV</Text>
-    </View>
+    <SafeAreaView>
+      <View style={styles.text}>
+        <Text style={styles.title}>{title}</Text>
+      </View>
+    </SafeAreaView>
   );
 };
 

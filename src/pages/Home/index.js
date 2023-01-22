@@ -11,7 +11,7 @@ import Fornecedores from "../../components/Fornecedores";
 const Home = () => {
   return (
     <View style={styles.container}>
-      <Header />
+      <Header title="Consultor PDV" />
       <View style={styles.components}>
         <Produtos />
         <Fornecedores />
