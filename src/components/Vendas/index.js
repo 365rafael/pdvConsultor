@@ -1,13 +1,11 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
 import { Feather } from "@expo/vector-icons";
 
-import styles from "../../styles";
-
-const index = () => {
+const index = ({ onPressActionButton }) => {
   return (
     <View>
-      <TouchableOpacity style={styles.button} onPress={() => alert("Vendas")}>
+      <TouchableOpacity style={styles.button} onPress={onPressActionButton}>
         <Feather name="shopping-bag" size={70} />
         <Text style={styles.itemText}>Efetuar Venda</Text>
       </TouchableOpacity>
@@ -16,3 +14,14 @@ const index = () => {
 };
 
 export default index;
+
+const styles = StyleSheet.create({
+  button: {
+    alignItems: "center",
+  },
+  itemText: {
+    fontSize: 18,
+    marginTop: 14,
+    fontWeight: "bold",
+  },
+});

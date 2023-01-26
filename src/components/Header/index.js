@@ -1,7 +1,5 @@
-import { View, Text, SafeAreaView } from "react-native";
+import { View, Text, SafeAreaView, StyleSheet } from "react-native";
 import React from "react";
-
-import styles from "../../styles";
 
 const Header = ({ title }) => {
   return (
@@ -14,3 +12,13 @@ const Header = ({ title }) => {
 };
 
 export default Header;
+
+const styles = StyleSheet.create({
+  text: {
+    alignItems: "center",
+    marginVertical: 20,
+  },
+  title: {
+    fontSize: 36,
+  },
+});

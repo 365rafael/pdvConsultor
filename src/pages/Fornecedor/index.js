@@ -1,9 +1,10 @@
 import { View, TouchableOpacity, Text, FlatList } from "react-native";
 import React from "react";
-import Header from "../../components/Header";
-import { Feather } from "@expo/vector-icons";
 
-import styles from "../../styles";
+import styles from "./styles";
+
+import { MaterialIcons } from "@expo/vector-icons";
+import CadastroFornecedor from "./CadastroFornecedor";
 
 let fornecedor = [
   { key: 1, name: "Sumup" },
@@ -18,16 +19,17 @@ let fornecedor = [
   { key: 10, name: "Infinity" },
 ];
 
-const Fornecedor = () => {
+const Fornecedor = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Header title="Fornecedores" />
       <View style={styles.components}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => alert("Novo Fornecedor")}
+          onPress={() => {
+            navigation.navigate("CadastroFornecedor");
+          }}
         >
-          <Feather name="edit" size={70} />
+          <MaterialIcons name="add-business" size={70} color={"#fff"} />
           <Text style={styles.itemText}>Novo Fornecedor</Text>
         </TouchableOpacity>
       </View>

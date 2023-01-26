@@ -1,16 +1,12 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
 
-import styles from "../../styles";
 import { Feather } from "@expo/vector-icons";
 
-const Relatorios = () => {
+const Relatorios = ({ onPressActionButton }) => {
   return (
     <View>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => alert("Relatórios")}
-      >
+      <TouchableOpacity style={styles.button} onPress={onPressActionButton}>
         <Feather name="book-open" size={70} />
         <Text style={styles.itemText}>Relatórios</Text>
       </TouchableOpacity>
@@ -19,3 +15,14 @@ const Relatorios = () => {
 };
 
 export default Relatorios;
+
+const styles = StyleSheet.create({
+  button: {
+    alignItems: "center",
+  },
+  itemText: {
+    fontSize: 18,
+    marginTop: 14,
+    fontWeight: "bold",
+  },
+});
