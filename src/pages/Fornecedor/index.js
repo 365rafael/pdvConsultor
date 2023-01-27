@@ -4,19 +4,18 @@ import React from "react";
 import styles from "./styles";
 
 import { MaterialIcons } from "@expo/vector-icons";
-import CadastroFornecedor from "./CadastroFornecedor";
 
 let fornecedor = [
-  { key: 1, name: "Sumup" },
-  { key: 2, name: "Pagseguro" },
-  { key: 3, name: "Ton" },
-  { key: 4, name: "MercadoPago" },
-  { key: 5, name: "Acquio" },
-  { key: 6, name: "Global" },
-  { key: 7, name: "Quero2Pay" },
-  { key: 8, name: "Cielo" },
-  { key: 9, name: "Rede" },
-  { key: 10, name: "Infinity" },
+  { id: 1, name: "Sumup" },
+  { id: 2, name: "Pagseguro" },
+  { id: 3, name: "Ton" },
+  { id: 4, name: "MercadoPago" },
+  { id: 5, name: "Acquio" },
+  { id: 6, name: "Global" },
+  { id: 7, name: "Quero2Pay" },
+  { id: 8, name: "Cielo" },
+  { id: 9, name: "Rede" },
+  { id: 10, name: "Infinity" },
 ];
 
 const Fornecedor = ({ navigation }) => {
@@ -44,7 +43,7 @@ const Fornecedor = ({ navigation }) => {
             </TouchableOpacity>
           </>
         )}
-        keyExtractor={(item) => item.key}
+        keyExtractor={(item) => item.id}
       />
     </View>
   );
