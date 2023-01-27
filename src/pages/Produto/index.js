@@ -5,16 +5,16 @@ import { MaterialIcons } from "@expo/vector-icons";
 import styles from "./styles";
 
 let produto = [
-  { key: 1, name: "Sumup Top", price: 34.9, quantidade: 60 },
-  { key: 2, name: "Sumup On", price: 250.8, quantidade: 3 },
-  { key: 3, name: "Sumup Solo", price: 298.8, quantidade: 3 },
-  { key: 4, name: "Sumup Total", price: 298.8, quantidade: 8 },
-  { key: 5, name: "Case On", price: 14, quantidade: 0 },
-  { key: 6, name: "Capinha On", price: 14, quantidade: 5 },
-  { key: 7, name: "Capinha Top", price: 0.0, quantidade: 100 },
-  { key: 8, name: "Produtos Avon", price: 15.9, quantidade: 5 },
-  { key: 9, name: "Produtos Natura", price: 10.9, quantidade: 5 },
-  { key: 10, name: "Informática", price: 100.0, quantidade: 5 },
+  { id: 1, nome: "Sumup Top", preco: 34.9, estoque: 60 },
+  { id: 2, nome: "Sumup On", preco: 250.8, estoque: 3 },
+  { id: 3, nome: "Sumup Solo", preco: 298.8, estoque: 3 },
+  { id: 4, nome: "Sumup Total", preco: 298.8, estoque: 8 },
+  { id: 5, nome: "Case On", preco: 14, estoque: 0 },
+  { id: 6, nome: "Capinha On", preco: 14, estoque: 5 },
+  { id: 7, nome: "Capinha Top", preco: 0.0, estoque: 100 },
+  { id: 8, nome: "Produtos Avon", preco: 15.9, estoque: 5 },
+  { id: 9, nome: "Produtos Natura", preco: 10.9, estoque: 5 },
+  { id: 10, nome: "Informática", preco: 100.0, estoque: 5 },
 ];
 
 const Produto = ({ navigation }) => {
@@ -42,14 +42,14 @@ const Produto = ({ navigation }) => {
           <>
             <TouchableOpacity style={styles.buttonList}>
               <View style={styles.itemList}>
-                <Text style={styles.list}>{item.name}</Text>
-                <Text style={styles.list}> R$ {item.price}</Text>
-                <Text style={styles.list}> {item.quantidade}</Text>
+                <Text style={styles.list}>{item.nome}</Text>
+                <Text style={styles.list}> R$ {item.preco}</Text>
+                <Text style={styles.list}> {item.estoque}</Text>
               </View>
             </TouchableOpacity>
           </>
         )}
-        keyExtractor={(item) => item.key}
+        keyExtractor={(item) => item.id}
       />
     </View>
   );

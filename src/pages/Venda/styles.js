@@ -46,6 +46,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 18,
   },
+  erro: {
+    color: "red",
+  },
   btnAdd: {
     backgroundColor: "cadetblue",
     width: "30%",

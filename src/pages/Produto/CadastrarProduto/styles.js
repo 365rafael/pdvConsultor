@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
   inputText: {
     fontSize: 20,
-    marginBottom: 10,
+    marginBottom: 5,
     marginTop: 10,
   },
   inputStore: {
@@ -45,6 +45,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     textAlign: "center",
     fontSize: 18,
+  },
+  erro: {
+    color: "red",
   },
   btnAdd: {
     backgroundColor: "cadetblue",

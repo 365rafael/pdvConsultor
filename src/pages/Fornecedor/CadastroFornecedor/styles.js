@@ -27,6 +27,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 10,
   },
+  erro: {
+    color: "red",
+  },
 
   btnAdd: {
     backgroundColor: "cadetblue",

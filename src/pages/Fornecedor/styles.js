@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
   buttonList: {
     borderBottomWidth: 1,
     marginBottom: 10,
+    paddingLeft: 10,
   },
   flatlist: {
     marginTop: 50,
