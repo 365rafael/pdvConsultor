@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   btnAdd: {
     backgroundColor: "cadetblue",
-    width: "40%",
+    width: "30%",
     height: 50,
     alignItems: "center",
     justifyContent: "center",
@@ -60,14 +60,22 @@ const styles = StyleSheet.create({
   },
   btnCancelar: {
     backgroundColor: "black",
-    width: "40%",
+    width: "30%",
     height: 50,
     alignItems: "center",
     justifyContent: "center",
     marginRight: 10,
     borderRadius: 25,
   },
- 
+  btnExcluir: {
+    backgroundColor: "red",
+    width: "30%",
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: 10,
+    borderRadius: 25,
+  },
   btnArea: {
     marginTop: 20,
     alignItems: "center",

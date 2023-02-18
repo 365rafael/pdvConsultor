@@ -9,6 +9,7 @@ import Relatorio from "../pages/Relatorio";
 import Venda from "../pages/Venda";
 import CadastrarProduto from "../pages/Produto/CadastrarProduto";
 import CadastroFornecedor from "../pages/Fornecedor/CadastroFornecedor";
+import EditarProduto from "../pages/Produto/EditarProduto";
 
 const Stack = createNativeStackNavigator();
 
@@ -69,6 +70,14 @@ function Routes() {
           options={{
             headerBackTitle: true,
             title: "Cadastrar Produtos",
+          }}
+        />
+        <Stack.Screen
+          name="EditarProduto"
+          component={EditarProduto}
+          options={{
+            headerBackTitle: true,
+            title: "Editar Produtos",
           }}
         />
         <Stack.Screen

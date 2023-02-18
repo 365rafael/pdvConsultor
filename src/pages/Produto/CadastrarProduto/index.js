@@ -3,20 +3,43 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  Alert,
+  
   Keyboard,
 } from "react-native";
 import React, { useState } from "react";
 import styles from "./styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import uuid from 'react-native-uuid';
+import Toast from "react-native-toast-message";
 
 const CadastrarProduto = ({ navigation }) => {
-  const [produto, setProduto] = useState({});
   const [nome, setNome] = useState();
   const [fornecedor, setFornecedor] = useState();
   const [preco, setPreco] = useState();
   const [estoque, setEstoque] = useState();
   const [erro, setErro] = useState();
+
+  
+  const storeBD = async(newData) =>{
+    try {
+    const response = await AsyncStorage.getItem('@produtos')
+    const previousData = response ? JSON.parse(response) : []
+    const data = [...previousData, newData];
+
+      const produtoBD = JSON.stringify(data)
+      await AsyncStorage.setItem('@produtos', produtoBD)
+      console.log("Salvando::",produtoBD)
+      Keyboard.dismiss();
+      Toast.show({
+        type:"sucess",
+        text1:"Produto cadastrado com sucesso!"
+      })
+    navigation.goBack();
+    } catch (e) {
+      console.log("ERRO::", e)
+    }
+    
+  }
 
   const onAdd = () => {
     if (
@@ -29,19 +52,17 @@ const CadastrarProduto = ({ navigation }) => {
       return;
     }
     setErro(null);
-    setProduto({
-      id: null,
-      nome: nome,
-      fornecedor: fornecedor,
-      preco: parseFloat(preco),
-      estoque: parseFloat(estoque),
-    });
-    Alert.alert(
-      `Produto: ${nome}, Fonecedor: ${fornecedor}, Custo: R$ ${preco}, Estoque ${estoque}`
-    );
-    setNome("");
-    Keyboard.dismiss();
-    navigation.goBack();
+
+    const newData = {
+      id: uuid.v4(),
+      nome,
+      fornecedor,
+      preco: parseFloat(preco.replace(',', '.')),
+      estoque: parseFloat(estoque.replace(',','.'))
+    }
+    console.log("STATE", newData)
+    storeBD(newData)
+    
   };
 
   const onDelete = () => {
@@ -57,7 +78,7 @@ const CadastrarProduto = ({ navigation }) => {
           style={styles.inputNome}
           cursorColor={"black"}
           placeholder="Nome"
-          onChangeText={setNome}
+          onChangeText={(text) =>setNome(text)}
         />
         <Text style={styles.inputText}>Fornecedor:</Text>
         {fornecedor == null && <Text style={styles.erro}>{erro}</Text>}
@@ -74,7 +95,7 @@ const CadastrarProduto = ({ navigation }) => {
           keyboardType="numeric"
           cursorColor={"black"}
           placeholder="R$"
-          onChangeText={setPreco}
+          onChangeText={(text)=>setPreco(text)}
         />
         <Text style={styles.inputText}>Estoque inicial:</Text>
         {estoque == null && <Text style={styles.erro}>{erro}</Text>}
@@ -83,7 +104,7 @@ const CadastrarProduto = ({ navigation }) => {
           keyboardType="numeric"
           cursorColor={"black"}
           placeholder="un"
-          onChangeText={setEstoque}
+          onChangeText={(text)=>setEstoque(text)}
         />
         <View style={styles.btnArea}>
           <TouchableOpacity style={styles.btnAdd} onPress={onAdd}>
@@ -95,9 +116,7 @@ const CadastrarProduto = ({ navigation }) => {
           >
             <Text style={styles.btnText}>Cancelar</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btnExcluir} onPress={onDelete}>
-            <Text style={styles.btnText}>Excluir</Text>
-          </TouchableOpacity>
+         
         </View>
       </View>
     </View>

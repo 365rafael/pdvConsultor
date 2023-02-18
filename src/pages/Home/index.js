@@ -8,23 +8,21 @@ import Relatorios from "../../components/Relatorios";
 import Configs from "../../components/Configs";
 import Fornecedores from "../../components/Fornecedores";
 
+
+
 const Home = ({ navigation }) => {
+  
   return (
     <View style={styles.container}>
       <Header title="Consultor PDV" />
       <View style={styles.components}>
         <Produtos onPressActionButton={() => navigation.navigate("Produto")} />
-        <Fornecedores
-          onPressActionButton={() => navigation.navigate("Fornecedor")}
-        />
-      </View>
-      <View style={styles.components}>
         <Relatorios
           onPressActionButton={() => navigation.navigate("Relatorio")}
-        />
-        <Vendas onPressActionButton={() => navigation.navigate("Venda")} />
+          />
       </View>
       <View style={styles.components}>
+        <Vendas onPressActionButton={() => navigation.navigate("Venda")} />
         <Configs
           onPressActionButton={() => navigation.navigate("Configuracao")}
         />

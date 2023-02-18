@@ -1,24 +1,45 @@
 import { View, TouchableOpacity, Text, FlatList } from "react-native";
-import React from "react";
+import React, { useCallback, useState } from "react";
 
 import { MaterialIcons } from "@expo/vector-icons";
 import styles from "./styles";
+import { useFocusEffect } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-let produto = [
-  { id: 1, nome: "Sumup Top", preco: 34.9, estoque: 60 },
-  { id: 2, nome: "Sumup On", preco: 250.8, estoque: 3 },
-  { id: 3, nome: "Sumup Solo", preco: 298.8, estoque: 3 },
-  { id: 4, nome: "Sumup Total", preco: 298.8, estoque: 8 },
-  { id: 5, nome: "Case On", preco: 14, estoque: 0 },
-  { id: 6, nome: "Capinha On", preco: 14, estoque: 5 },
-  { id: 7, nome: "Capinha Top", preco: 0.0, estoque: 100 },
-  { id: 8, nome: "Produtos Avon", preco: 15.9, estoque: 5 },
-  { id: 9, nome: "Produtos Natura", preco: 10.9, estoque: 5 },
-  { id: 10, nome: "Informática", preco: 100.0, estoque: 5 },
-];
 
 const Produto = ({ navigation }) => {
-  return (
+
+  const [produto, setProduto] = useState([])
+  const [loading, setLoading] = useState(true)
+
+ async function handleFetchData(){
+    const response = await AsyncStorage.getItem('@produtos')
+   const data = response ? JSON.parse(response) : []
+    console.log("ASYNC::", data)
+   setProduto(data)
+   console.log("PRODUTO::", produto)
+   setLoading(false)
+  }
+
+  useFocusEffect(
+    useCallback(()=>{
+      handleFetchData()
+            
+    },[]))
+    
+    // async function onEdit(item){
+    //   navigation.navigate("EditarProduto", {paramKey: item.id})
+    //   console.log("ENVIADO para editar", item)
+    // }
+
+    if (loading) {
+      return (
+        <View>
+          <Text>Carregando detalhes...</Text>
+        </View>
+      )
+    }
+    return (
     <View style={styles.container}>
       <View style={styles.components}>
         <TouchableOpacity
@@ -38,9 +59,10 @@ const Produto = ({ navigation }) => {
         style={styles.flatlist}
         data={produto}
         showsVerticalScrollIndicator={false}
+        keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <>
-            <TouchableOpacity style={styles.buttonList}>
+            <TouchableOpacity style={styles.buttonList} onPress={()=>navigation.navigate("EditarProduto", {paramKey: item.id})}>
               <View style={styles.itemList}>
                 <Text style={styles.list}>{item.nome}</Text>
                 <Text style={styles.list}> R$ {item.preco}</Text>
@@ -49,7 +71,6 @@ const Produto = ({ navigation }) => {
             </TouchableOpacity>
           </>
         )}
-        keyExtractor={(item) => item.id}
       />
     </View>
   );

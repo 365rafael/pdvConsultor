@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     alignItems: "baseline",
   },
   flatlist: {
-    marginTop: 50,
+    marginTop: 30,
   },
   listHead: {
     width: "100%",
